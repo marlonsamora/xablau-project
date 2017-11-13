@@ -2,18 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum AttackType
+{
+    melle,
+    ranged
+}
+
+public struct Damage
+{
+    public float damageValue;
+}
+
 public class CharacterController : MonoBehaviour {
 
     //TODO-Criar variável para que conterá o scriptable object com as informações do personagem
-    //TODO-Criar variável que conterá o tipo de ataque (Melee ou Ranged)
+
 
     //Basic info
-    private float hp;
-    private float attackPower;
-    private float attackSpeed;
-    private float attackRange;
-    private float walkSpeed;
-    private int criticalChance;
+    private float maxHp; //Total de hp
+    private float currentHp; // Hp atual
+    private float attackPower; //Dano base
+    private float attackSpeed; //Velocidade de ataque
+    private float attackRange; //Alcance do ataque
+    private AttackType attackType; //Tipo de ataque
+    private float walkSpeed; //Velocidade para andar
+    private int criticalChance; //Chance de acerto crítico
+    private float viewDistance; //Distância na qual é possível enxergar outros objetos
 
     //Status info
     private bool isInvisible;
@@ -31,4 +46,10 @@ public class CharacterController : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    void OnDamageReceived(Damage dmg)
+    {
+        
+        Debug.Log("Dano recebido"+dmg.damageValue);
+    }
 }
